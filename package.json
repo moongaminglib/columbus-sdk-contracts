@@ -1,21 +1,13 @@
 {
-  "name": "conflux-nft-contract",
+  "name": "columbus-sdk-contract",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Conflux-Chain/conflux-nft-contract.git"
-  },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Conflux-Chain/conflux-nft-contract/issues"
-  },
-  "homepage": "https://github.com/Conflux-Chain/conflux-nft-contract#readme",
   "dependencies": {
     "@openzeppelin/contracts": "^2.5.0",
     "@openzeppelin/upgrades": "2.8.0",
