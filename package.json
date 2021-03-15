@@ -1,0 +1,30 @@
+{
+  "name": "conflux-nft-contract",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Conflux-Chain/conflux-nft-contract.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Conflux-Chain/conflux-nft-contract/issues"
+  },
+  "homepage": "https://github.com/Conflux-Chain/conflux-nft-contract#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^2.5.0",
+    "@openzeppelin/upgrades": "2.8.0",
+    "decimal.js": "^10.2.1",
+    "ethers": "^5.0.24",
+    "js-conflux-sdk": "^1.5.10"
+  },
+  "devDependencies": {
+    "prettier": "^2.2.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.3"
+  }
+}
