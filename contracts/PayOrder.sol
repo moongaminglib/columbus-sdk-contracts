@@ -12,7 +12,7 @@ import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import './SponsorWhitelistControl.sol';
 import './libraries/Math.sol';
 import './libraries/Tool.sol';
-import './interfaces/IConDragon.sol';
+import './interfaces/ICustomNFT.sol';
 import './interfaces/IWCFX.sol';
 
 /**

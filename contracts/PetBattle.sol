@@ -12,10 +12,10 @@ import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import './SponsorWhitelistControl.sol';
 import './libraries/Math.sol';
 import './libraries/Tool.sol';
-import './interfaces/IConDragon.sol';
+import './interfaces/ICustomNFT.sol';
 
 /**
- * Condragon NFT Battle
+ * NFT Battle
  */
 contract PetBattle is Ownable {
     using SafeMath for uint256;
@@ -75,8 +75,8 @@ contract PetBattle is Ownable {
         require(limits[_user] < limitNum, "PetBattle: the limitnum over");
         LockInfo storage _lockInfo = locks[_tokenId];
         require(_lockInfo.tokenId == 0, "PetBattle: tokenId lock");
-        uint256 _catId = IConDragon(condragon).categoryOf(_tokenId);
-        uint256 _nftLevel = IConDragon(condragon).levelOf(_tokenId);
+        uint256 _catId = ICustomNFT(condragon).categoryOf(_tokenId);
+        uint256 _nftLevel = ICustomNFT(condragon).levelOf(_tokenId);
 
         _orderInfo.orderNo = _orderNo;
         _orderInfo.tokenId = _tokenId;
@@ -103,8 +103,8 @@ contract PetBattle is Ownable {
       require(_lockInfo.tokenId > 0, "PetBattle: tokenId no lock");
       require(_lockInfo.owner == msg.sender, "PetLock: no owner");
 
-      uint256 _catId = IConDragon(condragon).categoryOf(_tokenId);
-      uint256 _nftLevel = IConDragon(condragon).levelOf(_tokenId);
+      uint256 _catId = ICustomNFT(condragon).categoryOf(_tokenId);
+      uint256 _nftLevel = ICustomNFT(condragon).levelOf(_tokenId);
 
       _safeNFTTransfer(_lockInfo.owner, _tokenId);
       delete locks[_tokenId];
@@ -150,7 +150,7 @@ contract PetBattle is Ownable {
     }
 
     function _safeNFTTransfer(address _to, uint256 _id) internal {
-        IConDragon(condragon).safeTransferFrom(address(this), _to, _id, 1, '');
+        ICustomNFT(condragon).safeTransferFrom(address(this), _to, _id, 1, '');
     }
 
     function onERC1155BatchReceived(

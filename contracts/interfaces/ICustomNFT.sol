@@ -1,6 +1,6 @@
 pragma solidity 0.5.16;
 
-contract IConDragon {
+contract ICustomNFT {
     function categoryOf(uint256 _tokenId) external view returns (uint256);
 
     function levelOf(uint256 _tokenId) external view returns (uint256);
@@ -54,14 +54,25 @@ contract IConDragon {
         uint256 _amount
     ) external;
 
-    function createNFT(
+
+     function createNFTWithId(
+        address _initialOwner,
+        uint256 _token_id,
+        uint256 _category,
+        uint256 _level,
+        uint256 _initialSupply,
+        uint256 _cap,
+        bytes calldata _data
+    ) external;
+
+     function createNFT(
         address _initialOwner,
         uint256 _category,
         uint256 _level,
         uint256 _initialSupply,
         uint256 _cap,
         bytes calldata _data
-    ) external returns (uint256 tokenId);
+    ) external;
 
     function isTokenOwner(address _owner, uint256 _id)
         external

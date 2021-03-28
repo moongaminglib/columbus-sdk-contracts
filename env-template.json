@@ -1,0 +1,5 @@
+{
+  "json_rpc": "http://portal-test.confluxrpc.org",
+  "adminPrivateKey": "0x....",
+  "chainId": 1,
+}

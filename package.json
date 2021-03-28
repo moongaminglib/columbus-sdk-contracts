@@ -13,7 +13,7 @@
     "@openzeppelin/upgrades": "2.8.0",
     "decimal.js": "^10.2.1",
     "ethers": "^5.0.24",
-    "js-conflux-sdk": "^1.5.10"
+    "js-conflux-sdk": "^1.5.15"
   },
   "devDependencies": {
     "prettier": "^2.2.1",

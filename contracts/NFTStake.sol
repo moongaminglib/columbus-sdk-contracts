@@ -12,12 +12,12 @@ import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import './SponsorWhitelistControl.sol';
 import './libraries/Math.sol';
 import './libraries/Tool.sol';
-import './interfaces/IConDragon.sol';
+import './interfaces/ICustomNFT.sol';
 
 /**
  * NFT Stake Contract
  */
-contract ConDragonStake is Ownable, IERC777Recipient {
+contract NFTStake is Ownable, IERC777Recipient {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
@@ -237,8 +237,8 @@ contract ConDragonStake is Ownable, IERC777Recipient {
       require(_userPlace.isLock, "Stake: place is not lock");
       require(_userPlace.tokenId == 0, "Stake: exists tokenId");
 
-      uint256 _catId = IConDragon(condragon).categoryOf(_tokenId);
-      uint256 _level = IConDragon(condragon).levelOf(_tokenId);
+      uint256 _catId = ICustomNFT(condragon).categoryOf(_tokenId);
+      uint256 _level = ICustomNFT(condragon).levelOf(_tokenId);
       require(_catId > 0, "Stake: catId invalid");
       require(_level > 0, "Stake: level invalid");
       uint256 _nftRate = nftRates[_catId][_level];
@@ -397,7 +397,7 @@ contract ConDragonStake is Ownable, IERC777Recipient {
     }
 
     function _safeNFTTransfer(address _to, uint256 _id) internal {
-        IConDragon(condragon).safeTransferFrom(address(this), _to, _id, 1, '');
+        ICustomNFT(condragon).safeTransferFrom(address(this), _to, _id, 1, '');
     }
 
     function _safeTokenTransfer(address _to, uint256 _amount) internal {

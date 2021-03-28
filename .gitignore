@@ -4,3 +4,4 @@ sources/
 .vscode/
 build
 .DS_Store
+env.json

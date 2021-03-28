@@ -12,10 +12,10 @@ import "@openzeppelin/contracts/token/ERC20/SafeERC20.sol";
 import './SponsorWhitelistControl.sol';
 import './libraries/Math.sol';
 import './libraries/Tool.sol';
-import './interfaces/IConDragon.sol';
+import './interfaces/ICustomNFT.sol';
 
 /**
- * Condragon NFT
+ *  NFT Lock
  */
 contract PetLock is Ownable {
     using SafeMath for uint256;
@@ -75,8 +75,8 @@ contract PetLock is Ownable {
         require(!heroHangup[_user][_heroId], "PetLock: the hero lock nft");
         LockInfo storage _lockInfo = locks[_tokenId];
         require(_lockInfo.tokenId == 0, "PetLock: tokenId lock");
-        uint256 _catId = IConDragon(condragon).categoryOf(_tokenId);
-        uint256 _nftLevel = IConDragon(condragon).levelOf(_tokenId);
+        uint256 _catId = ICustomNFT(condragon).categoryOf(_tokenId);
+        uint256 _nftLevel = ICustomNFT(condragon).levelOf(_tokenId);
 
         _orderInfo.orderNo = _orderNo;
         _orderInfo.tokenId = _tokenId;
@@ -102,8 +102,8 @@ contract PetLock is Ownable {
       require(_lockInfo.tokenId > 0, "PetLock: tokenId no lock");
       require(_lockInfo.owner == msg.sender, "PetLock: no owner");
 
-      uint256 _catId = IConDragon(condragon).categoryOf(_tokenId);
-      uint256 _nftLevel = IConDragon(condragon).levelOf(_tokenId);
+      uint256 _catId = ICustomNFT(condragon).categoryOf(_tokenId);
+      uint256 _nftLevel = ICustomNFT(condragon).levelOf(_tokenId);
 
       _safeNFTTransfer(_lockInfo.owner, _tokenId);
       delete locks[_tokenId];
@@ -145,12 +145,12 @@ contract PetLock is Ownable {
         for(uint256 i = 0; i < _range; i ++){
           address _user = _users[i];
           uint256 _tokenId = _tokenIds[i];
-          if(!IConDragon(condragon).isTokenOwner(address(this), _tokenId)){
+          if(!ICustomNFT(condragon).isTokenOwner(address(this), _tokenId)){
              continue;
           }
 
-          uint256 _catId = IConDragon(condragon).categoryOf(_tokenId);
-          uint256 _nftLevel = IConDragon(condragon).levelOf(_tokenId);
+          uint256 _catId = ICustomNFT(condragon).categoryOf(_tokenId);
+          uint256 _nftLevel = ICustomNFT(condragon).levelOf(_tokenId);
 
           LockInfo memory _lockInfo = locks[_tokenId];
           _lockInfo.owner = _user;
@@ -163,7 +163,7 @@ contract PetLock is Ownable {
     }
 
     function _safeNFTTransfer(address _to, uint256 _id) internal {
-        IConDragon(condragon).safeTransferFrom(address(this), _to, _id, 1, '');
+        ICustomNFT(condragon).safeTransferFrom(address(this), _to, _id, 1, '');
     }
 
     function onERC1155BatchReceived(

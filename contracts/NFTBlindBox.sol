@@ -10,8 +10,8 @@ import "@openzeppelin/contracts/ownership/Ownable.sol";
 import "./SponsorWhitelistControl.sol";
 import "./libraries/Math.sol";
 import "./libraries/Tool.sol";
-import "./libraries/interface/IDragon.sol";
-import "./libraries/interface/IWCFX.sol";
+import "./interfaces/ICustomNFT.sol";
+import "./interfaces/IWCFX.sol";
 import "./ERC1155/interfaces/IERC1155TokenReceiver.sol";
 
 interface SwapRoute {
@@ -24,7 +24,7 @@ interface SwapRoute {
     ) external returns (uint256[] memory amounts);
 }
 
-contract ConDragonMarket is IERC777Recipient, Ownable, IERC1155TokenReceiver {
+contract NFTBlindBox is IERC777Recipient, Ownable, IERC1155TokenReceiver {
     using SafeMath for uint256;
     using SafeERC20 for IERC20;
 
@@ -257,10 +257,10 @@ contract ConDragonMarket is IERC777Recipient, Ownable, IERC1155TokenReceiver {
         nftIds[stageNum][_index] = nftIds[stageNum][length - 1];
         nftIds[stageNum].pop();
         nftOnSale[_tokenId] = false;
-        uint256 catId = IDragon(nft).categoryOf(_tokenId);
+        uint256 catId = ICustomNFT(nft).categoryOf(_tokenId);
         uint256 _amount = 1;
         if (catId != 0) {
-            IDragon(nft).safeTransferFrom(
+            ICustomNFT(nft).safeTransferFrom(
                 address(this),
                 _from,
                 _tokenId,
@@ -268,7 +268,7 @@ contract ConDragonMarket is IERC777Recipient, Ownable, IERC1155TokenReceiver {
                 ""
             );
         } else {
-            IDragon(nft).createNFTWithId(
+            ICustomNFT(nft).createNFTWithId(
                 _from,
                 _tokenId,
                 nftCatId[_tokenId],
@@ -362,7 +362,7 @@ contract ConDragonMarket is IERC777Recipient, Ownable, IERC1155TokenReceiver {
         address _to,
         uint256 _id
     ) internal {
-        IDragon(_token).safeTransferFrom(address(this), _to, _id, 1, "");
+        ICustomNFT(_token).safeTransferFrom(address(this), _to, _id, 1, "");
     }
 
     function _cMoonBuy(
