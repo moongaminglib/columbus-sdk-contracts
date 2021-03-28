@@ -3,7 +3,7 @@
 [English Docs](/en)
 
 #### 描述
-本项目为NFT铸造、空投、挖矿、盲盒售卖资源包,包括源码、脚本。NFT资产标准 [`ERC1155`](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1155.md)
+本项目为NFT铸造、空投、挖矿、盲盒售卖资源包,包括源码、脚本。并且基于NFT资产标准 [`ERC1155`](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-1155.md)
 
 
 #### 合作案例
