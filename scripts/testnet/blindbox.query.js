@@ -19,6 +19,6 @@ const contract = cfx.Contract({
 });
 
 async function main() {
-
+  
 }
 main().catch(e => console.error(e));

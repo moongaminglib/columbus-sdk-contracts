@@ -23,6 +23,10 @@ const contract = cfx.Contract({
 async function main() {
   let _id = 1
   await ownersOf(_id);
+
+  let nextTokenId = await contract.getNextTokenID().call();
+
+  console.log('nextTokenId =>', nextTokenId);
 }
 
 async function ownersOf(_id)

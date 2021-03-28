@@ -232,11 +232,6 @@ contract PayOrder is Ownable, IERC777Recipient {
         );
       }
     }
-    // MultiSigWalletWithTimeLock future
-    // Withdraw EMERGENCY ONLY.
-    function emergencyWithdraw(address tokenAddress, address to, uint256 _amount) external onlyOwner {
-        IERC777(tokenAddress).send(to, _amount, "");
-    }
 
     // erc777 receiveToken
     function tokensReceived(address operator, address from, address to, uint amount,

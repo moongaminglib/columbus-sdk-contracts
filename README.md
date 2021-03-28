@@ -64,3 +64,35 @@ meta 服务支持可以考虑使用 ipfs/中心化服务存储.
 constructor( address _devAddr, string memory _baseMetadataURI)
     CRCN("any NFT", "xxNFT")
 ```
+
+- 部署合约
+
+```
+node scripts/testnet/nft.deploy.js
+```
+
+- 铸造NFT
+
+将上一步部署的合约地址填写在 contracts.json nft_addr后，并替换nft.create.js的 to地址
+
+并且该脚本包括批量空投功能
+
+```
+node scripts/testnet/nft.create.js
+```
+
+##### 盲盒售卖
+
+上架、定价
+
+```
+node scripts/testnet/blindbox.build.js
+```
+
+##### 质押挖矿
+
+设置挖矿权重、分红速率
+
+```
+node scripts/testnet/stake.build.js
+```

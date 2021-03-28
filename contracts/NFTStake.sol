@@ -337,12 +337,6 @@ contract NFTStake is Ownable, IERC777Recipient {
       return (_catIds, _totalNums);
     }
 
-    // MultiSigWalletWithTimeLock future
-    // Withdraw EMERGENCY ONLY.
-    function emergencyWithdraw(address tokenAddress, address to, uint256 _amount) external onlyOwner {
-        IERC777(tokenAddress).send(to, _amount, "");
-    }
-
     function pendingToken(address _user) external view returns(uint256) {
       UserInfo storage user = userInfo[_user];
       uint256 _accTokenPerShare = accTokenPerShare;
